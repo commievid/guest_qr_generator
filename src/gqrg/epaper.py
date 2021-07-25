@@ -14,10 +14,10 @@ def draw_qr(ssid, ssid_key):
     epd.Clear()
 
     logging.info("Reading in the PNG file and saving to BMP")
-    Image.open("qr.png").save("qr.bmp")
+    Image.open("qr.png").resize((300, 300)).save("qr.bmp")
     qrImage = Image.open("qr.bmp")
-    qrImage.resize((300, 300))
 
+    logging.info("Begin drawing")
     resultingImage = Image.new("1", (epd.height, epd.width), 255)
     resultingImage.paste(qrImage, (0, 50))
 
@@ -26,6 +26,7 @@ def draw_qr(ssid, ssid_key):
     draw.text((0,0), "Guest Wifi", font = font18, fill = 0)
     draw.text((0,20), "SSID: " + ssid + ", Password: " + ssid_key, font = font18, fill = 0)
 
+    logging.info("Display to e-Paper")
     epd.display(epd.getbuffer(resultingImage))
 
     time.sleep(2)
