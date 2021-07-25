@@ -28,12 +28,12 @@ def draw_qr(ssid, ssid_key):
     font20 = ImageFont.truetype("forgotten futurist bd.ttf", 20)
     draw = ImageDraw.Draw(resultingImage)
 
-    length = draw.textlength(title, font = font20)
-    draw.text(((300 - length) / 2, 0), title, font = font20)
-    length = draw.textlength(ssid_text, font = font20)
-    draw.text(((300 - length) / 2, 35), ssid_text, font = font20)
-    length = draw.textlength(ssid_key_text, font = font20)
-    draw.text(((300 - length) / 2, 60), ssid_key_text, font = font20)
+    size = draw.textsize(title, font = font20)
+    draw.text(((300 - size[0]) / 2, 0), title, font = font20)
+    size = draw.textsize(ssid_text, font = font20)
+    draw.text(((300 - size[0]) / 2, 35), ssid_text, font = font20)
+    size = draw.textsize(ssid_key_text, font = font20)
+    draw.text(((300 - size[0]) / 2, 60), ssid_key_text, font = font20)
 
     logging.info("Display to e-Paper")
     epd.display(epd.getbuffer(resultingImage))
