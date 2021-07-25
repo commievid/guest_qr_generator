@@ -1,4 +1,3 @@
-from sys import platform
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
@@ -6,22 +5,21 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 import keyring
 from pyvirtualdisplay import Display
+import logging
 
-# pip install selenium
-# pip install keyring
-# pip install pyvirtualdisplay
+logging.basicConfig(level = logging.INFO)
 
 def update_password(ssid_key, headless = True):
     
     if headless:
-        print("Starting virtual display")
+        logging.info("Starting virtual display")
         disp = Display()
         disp.start()
 
-    print("Starting chromedriver")
+    logging.info("Starting chromedriver")
     driver = webdriver.Chrome()
 
-    print("Connecting to router")
+    logging.info("Connecting to router")
     # Password will need setting first: keyring.set_password
     driver.get("http://admin:" + keyring.get_password("gqrg", "admin") + "@192.168.1.1")
 
@@ -42,7 +40,7 @@ def update_password(ssid_key, headless = True):
 
     time.sleep(5)
 
-    print("Logging out")
+    logging.info("Logging out")
     driver.switch_to.default_content()
     driver.switch_to.frame("topframe")      
 
@@ -51,11 +49,10 @@ def update_password(ssid_key, headless = True):
 
     time.sleep(5)
 
-    print("Stopping chromedriver")
+    logging.info("Stopping chromedriver")
     driver.close()
 
     if headless:
-        print("Stopping virtual display")
+        logging.info("Stopping virtual display")
         disp.stop()
-        # display is stopped
     

@@ -1,0 +1,5 @@
+keyring==23.0.1
+wifi_qrcode_generator==0.1
+selenium==3.141.0
+PyVirtualDisplay==2.2
+Pillow==8.3.1
