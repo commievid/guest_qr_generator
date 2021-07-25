@@ -21,11 +21,19 @@ def draw_qr(ssid, ssid_key):
     resultingImage = Image.new("1", (epd.height, epd.width), 255)
     resultingImage.paste(qrImage, (0, 100))
 
-    font18 = ImageFont.truetype("Font.ttc", 18)
+    title = "Guest Wifi"
+    ssid_text = "SSID: " + ssid
+    ssid_key_text = "Password: " + ssid_key
+
+    retroFont = ImageFont.truetype("Retro Gaming.ttf", 20)
     draw = ImageDraw.Draw(resultingImage)
-    draw.text((100,0), "Guest Wifi", font = font18, fill = 0)
-    draw.text((5,20), "SSID: " + ssid, font = font18, fill = 0)
-    draw.text((5,40), "Password: " + ssid_key, font = font18, fill = 0)
+
+    textWidth = draw.textsize(title, font = retroFont)
+    draw.text(((epd.width - textWidth) / 2, 0), title, font = retroFont)
+    textWidth = draw.textsize(ssid_text, font = retroFont)
+    draw.text(((epd.width - textWidth) / 2, 0), ssid_text, font = retroFont)
+    textWidth = draw.textsize(ssid_key_text, font = retroFont)
+    draw.text(((epd.width - textWidth) / 2, 0), ssid_key_text, font = retroFont)
 
     logging.info("Display to e-Paper")
     epd.display(epd.getbuffer(resultingImage))
