@@ -28,12 +28,12 @@ def draw_qr(ssid, ssid_key):
     retroFont = ImageFont.truetype("Retro Gaming.ttf", 20)
     draw = ImageDraw.Draw(resultingImage)
 
-    textWidth = draw.textsize(title, font = retroFont)
-    draw.text(((epd.width - textWidth) / 2, 0), title, font = retroFont)
-    textWidth = draw.textsize(ssid_text, font = retroFont)
-    draw.text(((epd.width - textWidth) / 2, 0), ssid_text, font = retroFont)
-    textWidth = draw.textsize(ssid_key_text, font = retroFont)
-    draw.text(((epd.width - textWidth) / 2, 0), ssid_key_text, font = retroFont)
+    textSize = draw.textsize(title, font = retroFont)
+    draw.text(((epd.width - textSize[0]) / 2, 0), title, font = retroFont)
+    textSize = draw.textsize(ssid_text, font = retroFont)
+    draw.text(((epd.width - textSize[0]) / 2, 0), ssid_text, font = retroFont)
+    textSize = draw.textsize(ssid_key_text, font = retroFont)
+    draw.text(((epd.width - textSize[0]) / 2, 0), ssid_key_text, font = retroFont)
 
     logging.info("Display to e-Paper")
     epd.display(epd.getbuffer(resultingImage))
