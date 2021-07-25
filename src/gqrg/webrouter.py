@@ -28,8 +28,8 @@ def update_password(ssid_key, headless = True):
     # normally, but in the realms of a Selenium automated process, maybe ok
     logging.info("Starting chromedriver")
     opts = webdriver.ChromeOptions()
-    opts.add_argument('--headless')
-    driver = webdriver.Chrome(options=opts)
+    opts.add_argument('--no-sandbox')
+    opts.add_argument('--disable-dev-shm-usage')
     driver = webdriver.Chrome(options = opts)
 
     logging.info("Connecting to router")
