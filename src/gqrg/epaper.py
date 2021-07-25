@@ -5,7 +5,7 @@ import time
 
 logging.basicConfig(level = logging.INFO)
 
-def draw_qr():
+def draw_qr(ssid, ssid_key):
     logging.info("Starting drawing to e-Paper")
 
     epd = epd4in2.EPD()
@@ -19,11 +19,12 @@ def draw_qr():
     qrImage.resize((300, 300))
 
     resultingImage = Image.new("1", (epd.height, epd.width), 255)
-    resultingImage.paste(qrImage, (50, 0))
+    resultingImage.paste(qrImage, (0, 50))
 
     font18 = ImageFont.truetype("Font.ttc", 18)
     draw = ImageDraw.Draw(resultingImage)
-    draw.text((0,0), "Test!", font = font18, fill = 0)
+    draw.text((0,0), "Guest Wifi", font = font18, fill = 0)
+    draw.text((0,20), "SSID: " + ssid + ", Password: " + ssid_key, font = font18, fill = 0)
 
     epd.display(epd.getbuffer(resultingImage))
 

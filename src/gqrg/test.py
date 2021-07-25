@@ -18,4 +18,4 @@ print("Finished generating QR code for guest Wifi")
 # print("Updating the password via WebDriver")
 # webrouter.update_password(ssid_key)
 
-epaper.draw_qr()
+epaper.draw_qr(ssid, ssid_key)
