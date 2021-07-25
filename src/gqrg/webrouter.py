@@ -51,6 +51,7 @@ def update_password(ssid_key, headless = True):
 
     logging.info("Stopping chromedriver")
     driver.close()
+    driver.quit()
 
     if headless:
         logging.info("Stopping virtual display")
