@@ -29,11 +29,11 @@ def draw_qr(ssid, ssid_key):
     draw = ImageDraw.Draw(resultingImage)
 
     length = draw.textlength(title, font = font20)
-    draw.text(((epd.width - length)/ 2, 0), title, font = font20)
+    draw.text((100, 0), title, font = font20)
     length = draw.textlength(ssid_text, font = font20)
-    draw.text(((epd.width - length)/ 2, 30), ssid_text, font = font20)
+    draw.text((5, 30), ssid_text, font = font20)
     length = draw.textlength(ssid_key_text, font = font20)
-    draw.text(((epd.width - length)/ 2, 60), ssid_key_text, font = font20)
+    draw.text((5, 60), ssid_key_text, font = font20)
 
     logging.info("Display to e-Paper")
     epd.display(epd.getbuffer(resultingImage))
