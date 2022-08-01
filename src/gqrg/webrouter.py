@@ -36,7 +36,7 @@ def update_password(ssid_key, headless = True):
     # Password will need setting first: keyring.set_password
     driver.get("http://admin:" + keyring.get_password("gqrg", "admin") + "@192.168.1.1")
 
-    wait = WebDriverWait(driver, 10)
+    wait = WebDriverWait(driver, 30)
     frame = wait.until(EC.presence_of_element_located((By.XPATH, "/html/body/table/tbody/tr/td/table/tbody/tr/td/div[2]/table/tbody/tr/td[2]/div/iframe")))
     # /html/body/div[2]/div/div[3]/iframe
     driver.switch_to.frame(frame)
