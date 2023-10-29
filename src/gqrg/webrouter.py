@@ -37,14 +37,14 @@ def update_password(ssid_key, headless = True):
     driver.get("http://admin:" + keyring.get_password("gqrg", "admin") + "@192.168.1.1")
 
     wait = WebDriverWait(driver, 30)
-    frame = wait.until(EC.presence_of_element_located((By.XPATH, "/html/body/table/tbody/tr/td/table/tbody/tr/td/div[2]/table/tbody/tr/td[2]/div/iframe")))
+    frame = wait.until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div[2]/div[1]/table/tbody/tr/td[2]/div/iframe")))
     # /html/body/div[2]/div/div[3]/iframe
     driver.switch_to.frame(frame)
 
     element = wait.until(EC.element_to_be_clickable((By.ID, "guest")))
     element.click()
 
-    passphrase = wait.until(EC.visibility_of_element_located((By.ID, 'wpa3_personal_passphrase')))
+    passphrase = wait.until(EC.visibility_of_element_located((By.ID, 'passphrase')))
     #  passphrase
 
     passphrase.clear()
@@ -57,7 +57,7 @@ def update_password(ssid_key, headless = True):
 
     logging.info("Logging out")
     driver.switch_to.default_content()
-    frame = wait.until(EC.presence_of_element_located((By.XPATH, "/html/body/table/tbody/tr/td/table/tbody/tr/td/div[1]/iframe")))
+    frame = wait.until(EC.presence_of_element_located((By.XPATH, "/html/body/div[1]/div[1]/iframe")))
     driver.switch_to.frame(frame)
 
     logout = wait.until(EC.visibility_of_element_located((By.ID, "logout")))
